@@ -1,5 +1,9 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:20-alpine'
+        }
+    }
     
     stages {
         stage('Build') {
@@ -12,18 +16,6 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'npm run lint'
-            }
-        }
-        
-        stage('Docker Build') {
-            steps {
-                sh 'docker build -t weather-app .'
-            }
-        }
-        
-        stage('Deploy') {
-            steps {
-                sh 'docker-compose up -d'
             }
         }
     }

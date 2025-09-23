@@ -35,7 +35,7 @@ function App() {
         wind_speed: current.windspeedKmph,
         description: current.weatherDesc[0].value
       })
-    } catch (err) {
+    } catch {
       setError('Unable to fetch weather data. Please try again.')
       setWeather(null)
     } finally {
